@@ -1,1 +1,6 @@
-<h1>funcionou</h1>
+<h1>{{ title }}</h1>
+<ul>
+    <li *ngFor="let todo of todos">{{ todo }}</li>
+</ul>
+
+<button (click)="alterarTexto()">Alterar titulo</button>

@@ -7,33 +7,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css'] // aqui pode ser ser incluido varios css que esse componente tem
 })
 export class AppComponent {
-  public todos : any[] = []; // [] vazio
-  //public todos : any[];  undefined
+  public todos : any[] = [];
+  public title : String = 'Minhas tarefas';
 
-  /**
-   * chamado quando todo vez que o componente inicia
-   */
   constructor() {
-    //com o this. tem acesso a tudo que esta dentro da classe.
+    
     this.todos.push('passear com cachorro');
     this.todos.push('ir ao super mercado');
     this.todos.push('cortar cabelo');
-    this.todos.push(1999);
-    this.todos.push([{message : 'teste'}]);
-    this.todos.push(new Date());
-
-    //em objetos do tipo any é possivel colocar qq coisa
-    // é o bom que fica possivel adicionar qq coisa, o ruim que fica sem tipo
+    
   }
 
-  /* exemplo para o this
-  login(){
-
+  alterarTexto(){
+    this.title = 'Texto alterado'
   }
-
-  public teste : number = 0;
-
-  */
-
-
 }
