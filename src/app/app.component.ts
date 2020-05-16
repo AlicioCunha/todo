@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Todo } from './models/todo.model';
-import { ThrowStmt } from '@angular/compiler';
+
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root', // isso aqui irá virar uma tag html <app-root> se procurar está sendo chamado dentro do index
@@ -11,8 +12,19 @@ import { ThrowStmt } from '@angular/compiler';
 export class AppComponent {
   public todos: Todo[] = [];
   public title: String = 'Minhas tarefas';
+  public form : FormGroup;
 
-  constructor() {
+  constructor(private fb : FormBuilder) {
+      this.form = this.fb.group({
+        title : ['', Validators.compose([
+          Validators.minLength(3),
+          Validators.maxLength(60),
+          Validators.required
+        ])]
+      });
+
+
+
     // pode ser feito passando o objeto como a linha abaixo, mas iremos usar o construtor da classe
     //this.todos.push(new Todo(){id : 2, todo : 'Levar cachorro para passear', done : false});
     this.todos.push(new Todo(1, 'Passear com o cachorro', false));
