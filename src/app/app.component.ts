@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Todo } from './models/todo.model';
 
 @Component({
   selector: 'app-root', // isso aqui irá virar uma tag html <app-root> se procurar está sendo chamado dentro do index
@@ -7,18 +8,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css'] // aqui pode ser ser incluido varios css que esse componente tem
 })
 export class AppComponent {
-  public todos : any[] = [];
+  public todos : Todo[] = [];
   public title : String = 'Minhas tarefas';
 
   constructor() {
-    
-    this.todos.push('passear com cachorro');
-    this.todos.push('ir ao super mercado');
-    this.todos.push('cortar cabelo');
+    // pode ser feito passando o objeto como a linha abaixo, mas iremos usar o construtor da classe
+    //this.todos.push(new Todo(){id : 2, todo : 'Levar cachorro para passear', done : false});
+    this.todos.push();
+    this.todos.push();
     
   }
 
   alterarTexto(){
     this.title = 'Texto alterado'
   }
-}
+ }
