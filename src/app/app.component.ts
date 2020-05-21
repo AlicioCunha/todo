@@ -21,6 +21,8 @@ export class AppComponent {
         Validators.required
       ])]
     });
+
+    this.loadData();
   }
 
   remove(todo: Todo) {
@@ -28,14 +30,17 @@ export class AppComponent {
     if (index !== -1) {
       this.todos.splice(index, 1);
     }
+    this.saveData();
   }
 
   markAsDone(todo: Todo) {
     todo.done = true;
+    this.saveData();
   }
 
   markAsUndone(todo: Todo) {
     todo.done = false;
+    this.saveData();
   }
 
   add() {
@@ -54,5 +59,10 @@ export class AppComponent {
   saveData(){
     const data = JSON.stringify(this.todos);
     localStorage.setItem('todos', data);
+  }
+
+  loadData(){
+    const data = localStorage.getItem('todos');
+    this.todos = JSON.parse(data);
   }
 }
