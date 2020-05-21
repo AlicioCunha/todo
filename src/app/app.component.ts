@@ -12,25 +12,16 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class AppComponent {
   public todos: Todo[] = [];
   public title: String = 'Minhas tarefas';
-  public form : FormGroup;
+  public form: FormGroup;
 
-  constructor(private fb : FormBuilder) {
-      this.form = this.fb.group({
-        title : ['', Validators.compose([
-          Validators.minLength(3),
-          Validators.maxLength(60),
-          Validators.required
-        ])]
-      });
-
-
-
-    // pode ser feito passando o objeto como a linha abaixo, mas iremos usar o construtor da classe
-    //this.todos.push(new Todo(){id : 2, todo : 'Levar cachorro para passear', done : false});
-    this.todos.push(new Todo(1, 'Passear com o cachorro', false));
-    this.todos.push(new Todo(2, 'Ir ao supermercado', true));
-    this.todos.push(new Todo(3, 'Cortar o cabelo', false));
-
+  constructor(private fb: FormBuilder) {
+    this.form = this.fb.group({
+      title: ['', Validators.compose([
+        Validators.minLength(3),
+        Validators.maxLength(60),
+        Validators.required
+      ])]
+    });
   }
 
   // para remover um item é necessario fazer um splice
@@ -49,5 +40,20 @@ export class AppComponent {
 
   markAsUndone(todo: Todo) {
     todo.done = false;
+  }
+
+  add() {
+
+    //pode ser feito para ter uma json
+    //            this.form.value => {title : 'Titulo'}
+    const title = this.form.controls['title'].value;
+    const id = this.todos.length + 1;
+    this.todos.push(new Todo(id, title, false));
+    this.clear();
+
+  }
+
+  clear() {
+    this.form.reset();
   }
 }
