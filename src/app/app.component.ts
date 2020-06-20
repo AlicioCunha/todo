@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Todo } from 'src/models/todo.model';
+import { Todo } from './models/todo.model';
 
 @Component({
   selector: 'app-root', // <app-root>
